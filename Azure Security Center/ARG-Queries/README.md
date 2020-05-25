@@ -35,7 +35,7 @@ securityresource
 ```
 securityresources
  | where type == "microsoft.security/assessments/subassessments"
- // Get recommendations in useful format
+ // Get recommendations in a useful format
  | project 
     ['TenantID'] = tenantId,
     ['SubscriptionID'] = subscriptionId,
@@ -52,7 +52,7 @@ securityresources
     ['NestedImpact'] = properties.impact,
     ['NestedAdditionalData'] = properties.additionalData
 ```
-3. **Get ASC parent + nested recommendations combined** (best to filter by resource or resource group to get less result)
+3. **Get ASC parent + nested recommendations combined** (best to filter by resource or resource group to get less results)
 ```
 securityresources
  | where type == "microsoft.security/assessments"
@@ -77,7 +77,7 @@ securityresources
     ['UserImpact'] = properties.metadata.userImpact,
     ['Threats'] = properties.metadata.threats,
     ['Link'] = properties.links.azurePortal
-    // Filter to test with less results
+    // Filter get less results
         // | where ResourceName == "ntierapp-vm-web"
     // Joining Parentassessment + Nestedassessment table
     | join kind=leftouter (
@@ -109,7 +109,7 @@ securityresources
     ['PricingTier'] = properties.pricingTier,
     ['FreeTrialRemainingTime'] = properties.freeTrialRemainingTime
 // filter by subscription
-// | where SubscriptionID == '375bb878-6089-40b2-8a4d-7bb63807d186'
+// | where SubscriptionID == '<SubscriptionID>'
 ```
 5. **Create your own dashboards** or visualization charts
 
