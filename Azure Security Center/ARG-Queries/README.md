@@ -4,7 +4,7 @@ A useful use case is using ARG to query, visualize or export Azure Security Cent
 
 This starter kit consists of a set of basic ARG queries that have been created to help you build on top of them based on your different needs and requirements.
 
-1. Get ASC recommendations in useful format
+1. Get ASC **recommendations** in useful format
 ```
 securityresource
  | where type == "microsoft.security/assessments"
@@ -31,7 +31,7 @@ securityresource
     ['Threats'] = properties.metadata.threats,
     ['Link'] = properties.links.azurePortal
 ```
-2. Get ASC nested recommendations in useful format
+2. Get ASC **nested** recommendations in useful format
 ```
 securityresources
  | where type == "microsoft.security/assessments/subassessments"
@@ -52,7 +52,7 @@ securityresources
     ['NestedImpact'] = properties.impact,
     ['NestedAdditionalData'] = properties.additionalData
 ```
-3. Get ASC parent + nested recommendations combined (best to filter by resource or resource group to get less result)
+3. Get ASC **parent + nested** recommendations combined (best to filter by resource or resource group to get less result)
 ```
 securityresources
  | where type == "microsoft.security/assessments"
@@ -97,7 +97,7 @@ securityresources
         ) on ParentAssessmentID
         | project TenantID, SubscriptionID, ParentAssessmentID, NestedAssessmentID, DisplayName, NestedDisplayName, Description, NestedDescription, ResourceType, ResourceName, ResourceGroup, StatusCode, StatusDescription, RecomType, Severity, Threats, RemediationEffort, Remediation, NestedRemediation, UserImpact, NestedImpact, Categories, NestedCategory, TimeGenerated, PolicyDefID, Link
 ```
-4. Get ASC Current Pricing Tiers
+4. Get ASC Current **Pricing Tiers**
 ```
 securityresources
 | where type == "microsoft.security/pricings"
@@ -111,11 +111,11 @@ securityresources
 // filter by subscription
 // | where SubscriptionID == '375bb878-6089-40b2-8a4d-7bb63807d186'
 ```
-5. Create your own dashboards or visualization charts
+5. Create **your own dashboards** or visualization charts
 
 Apart from querying and exporting your results, ARG provides the ability to create charts and dashboards directly from the Azure Resource Graph Explorer console and even pin them directly into your Azure Portal.
 
-For this particular example, we will focus on all the recommendations that have been classified as High Severity and Low Remediation Effort by ASC in order to help cloud workload owners to prioritize work on what’s important and easy to remediate. As a starting point we have used the following ARG query:
+For this particular example, we will focus on all the recommendations that have been classified as **High Severity** and **Low Remediation Effort** by ASC in order to help cloud workload owners to prioritize work on what’s important and easy to remediate. As a starting point we have used the following ARG query:
 
 ```
 securityresources
@@ -150,6 +150,6 @@ securityresources
  | summarize count() by tostring(Threats)
  | order by count_
  ```
-By tweaking the previous query, we have been able to build different views summarizing threat vectors identified, type of impacted resources, list of recommendations, list of impacted resources, impacted subscriptions by threat vector, impacted resource group by threat vector.
+By tweaking the previous query, we have been able to build different views summarizing ***threat vectors identified, type of impacted resources, list of recommendations, list of impacted resources, impacted subscriptions by threat vector, impacted resource group by threat vector.***
  
 ![Image of ASCRecom-CustomDashboard](https://github.com/carlosfar/public/blob/master/Azure%20Security%20Center/ARG-Queries/ASCRecommendationsCustomDashboard.png)
