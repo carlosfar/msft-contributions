@@ -1,6 +1,6 @@
 # Starter Kit - ARG Queries for Azure Security Center Recommendations
 Azure Resource Graph (ARG) provides an efficient way to query at scale across a given set of subscriptions for any Azure Resource. 
-A particular usfeul use case is using ARG to query, visualize or export Azure Security Center (ASC) recommendations across subscriptions in order to get the information that matter most to you.
+A particular usfeul use case is using ARG to query, visualize or export Azure Security Center (ASC) recommendations in order to get the information that matter most to you.
 
 In order to ease your understanding of queries with ARG for ASC Recommendations you will find bellow a couple of basic examples that will hopelly work as a starting point for you to customize them based on your needs and requirements.
 
