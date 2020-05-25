@@ -112,4 +112,40 @@ securityresources
 // | where SubscriptionID == '375bb878-6089-40b2-8a4d-7bb63807d186'
 ```
 5. Create your own Dashboard or visualization charts
+On instersting feature of ARG is that apart from querying and exporting the information, you can created charts and dashboards directly from Azure Resource Graph Explorer and pin them on your Azure Portal Dashboards. For this particular examples, we want to retrieve all the recomendations with High severity and Low remediation effort provided by ASC, focussing on Threat vectors and impacted resources. For all the dashaboards created (see below screenshot) we have used the following ARG query:
+```
+securityresources
+ | where type == "microsoft.security/assessments"
+ // Get recommendations in useful format
+ | project
+    ['TenantID'] = tenantId,
+    ['SubscriptionID'] = subscriptionId,
+    ['AssessmentID'] = name,
+    ['DisplayName'] = properties.displayName,
+    ['ResourceType'] = tolower(split(properties.resourceDetails.Id,"/").[7]),
+    ['ResourceName'] = tolower(split(properties.resourceDetails.Id,"/").[8]),
+    ['ResourceGroup'] = resourceGroup,
+    ['ContainsNestedRecom'] = tostring(properties.additionalData.subAssessmentsLink),
+    ['StatusCode'] = properties.status.code,
+    ['StatusDescription'] = properties.status.description,
+    ['PolicyDefID'] = properties.metadata.policyDefinitionId,
+    ['Description'] = properties.metadata.description,
+    ['RecomType'] = properties.metadata.assessmentType,
+    ['Remediation'] = properties.metadata.remediationDescription,
+    ['RemediationEffort'] = properties.metadata.implementationEffort,
+    ['Severity'] = properties.metadata.severity,
+    ['Categories'] = properties.metadata.categories,
+    ['UserImpact'] = properties.metadata.userImpact,
+    ['Threats'] = properties.metadata.threats,
+    ['Link'] = properties.links.azurePortal
+// Filter
+ | where Severity == "High"
+ | where RemediationEffort == "Low"
+ // | where ResourceName == "ntierapp-vm-web"
+// summarize and order
+ | summarize count() by tostring(Threats)
+ | order by count_
+ ```
+ By tweking the previous query to provide different dashboards, we have benn able to set the following dashboard that can now be consumed in a very efficient manner each time I log onto my Azure Portal.
+ 
 ![Image of ASCRecom-CustomDashboard](https://github.com/carlosfar/public/blob/master/Azure%20Security%20Center/ARG-Queries/ASCRecommendationsCustomDashboard.png)
