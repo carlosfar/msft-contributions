@@ -115,6 +115,8 @@ securityresources
 
 Apart from querying and exporting your results, ARG provides the ability to create charts and dashboards directly from the Azure Resource Graph Explorer console and even pin them directly into your Azure Portal.
 
+![Image of ASCRecom-CustomDashboard](https://github.com/carlosfar/public/blob/master/Azure%20Security%20Center/ARG-Queries/ASCRecommendations-ChartCreation.png)
+
 For this particular example, we will focus on all the recommendations that have been classified as **High Severity** and **Low Remediation Effort** by ASC in order to help cloud workload owners to prioritize work on what’s important and easy to remediate. As a starting point we have used the following ARG query:
 
 ```
