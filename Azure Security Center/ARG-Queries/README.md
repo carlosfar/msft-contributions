@@ -1,10 +1,10 @@
 # Starter Kit - ARG Queries for Azure Security Center Recommendations
 Azure Resource Graph (ARG) provides an efficient way to query at scale across a given set of subscriptions for any Azure Resource (for more information please visit https://docs.microsoft.com/en-us/azure/governance/resource-graph/). 
-A particular usfeul use case is using ARG to query, visualize or export Azure Security Center (ASC) recommendations in order to get the information that matter most to you.
+A useful use case is using ARG to query, visualize or export Azure Security Center (ASC) recommendations in order to get the information that matter most to you.
 
-This starter kit consists of a set of basic ARG queries that have been created to help anyone build on top of them based on different needs and requirements.
+This starter kit consists of a set of basic ARG queries that have been created to help you build on top of them based on your different needs and requirements.
 
-1. Get ASC recommendations in usefull format
+1. Get ASC recommendations in useful format
 ```
 securityresource
  | where type == "microsoft.security/assessments"
@@ -111,9 +111,12 @@ securityresources
 // filter by subscription
 // | where SubscriptionID == '375bb878-6089-40b2-8a4d-7bb63807d186'
 ```
-5. Create your own Dashboard or visualization charts
+5. Create your own dashboards or visualization charts
 
-One instersting feature of ARG is that apart from querying and exporting the information, you can created charts and dashboards directly from Azure Resource Graph Explorer and pin them on your Azure Portal Dashboards. For this particular examples, we want to retrieve all the recomendations with High severity and Low remediation effort provided by ASC, focussing on Threat vectors and impacted resources. For all the dashaboards created (see below screenshot) we have used the following ARG query:
+Apart from querying and exporting your results, ARG provides the ability to create charts and dashboards directly from the Azure Resource Graph Explorer console and even pin them directly into your Azure Portal.
+
+For this particular example, we will focus on all the recommendations that have been classified as High Severity and Low Remediation Effort by ASC in order to help cloud workload owners to prioritize work on what’s important and easy to remediate. As a starting point we have used the following ARG query:
+
 ```
 securityresources
  | where type == "microsoft.security/assessments"
@@ -147,6 +150,6 @@ securityresources
  | summarize count() by tostring(Threats)
  | order by count_
  ```
- By tweking the previous query to provide different dashboards, we have benn able to set the following dashboard that can now be consumed in a very efficient manner each time I log onto my Azure Portal.
+By tweaking the previous query, we have been able to build different views summarizing threat vectors identified, type of impacted resources, list of recommendations, list of impacted resources, impacted subscriptions by threat vector, impacted resource group by threat vector.
  
 ![Image of ASCRecom-CustomDashboard](https://github.com/carlosfar/public/blob/master/Azure%20Security%20Center/ARG-Queries/ASCRecommendationsCustomDashboard.png)
