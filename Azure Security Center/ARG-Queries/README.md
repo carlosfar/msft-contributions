@@ -32,7 +32,7 @@ securityresource
     ['Link'] = properties.links.azurePortal
 ```
 2. Get ASC nested recommendations in useful format
-
+```
 securityresources
  | where type == "microsoft.security/assessments/subassessments"
  // Get recommendations in useful format
@@ -51,9 +51,9 @@ securityresources
     ['NestedRemediation'] = properties.remediation,
     ['NestedImpact'] = properties.impact,
     ['NestedAdditionalData'] = properties.additionalData
-
+```
 3. Get ASC parent + nested recommendations combined (best to filter by resource or resource group to get less result)
-
+```
 securityresources
  | where type == "microsoft.security/assessments"
  // Get recommendations in useful format
@@ -96,9 +96,9 @@ securityresources
                      //| where ResourceName == "ntierapp-vm-web"
         ) on ParentAssessmentID
         | project TenantID, SubscriptionID, ParentAssessmentID, NestedAssessmentID, DisplayName, NestedDisplayName, Description, NestedDescription, ResourceType, ResourceName, ResourceGroup, StatusCode, StatusDescription, RecomType, Severity, Threats, RemediationEffort, Remediation, NestedRemediation, UserImpact, NestedImpact, Categories, NestedCategory, TimeGenerated, PolicyDefID, Link
-
+```
 4. Get ASC Current Pricing Tiers
-
+```
 securityresources
 | where type == "microsoft.security/pricings"
 // Project in useful format
@@ -110,5 +110,5 @@ securityresources
     ['FreeTrialRemainingTime'] = properties.freeTrialRemainingTime
 // filter by subscription
 // | where SubscriptionID == '375bb878-6089-40b2-8a4d-7bb63807d186'
-
+```
 5. Create your own Dashboard or visualization charts
