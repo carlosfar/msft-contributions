@@ -112,3 +112,4 @@ securityresources
 // | where SubscriptionID == '375bb878-6089-40b2-8a4d-7bb63807d186'
 ```
 5. Create your own Dashboard or visualization charts
+![Image of ASCRecom-CustomDashboard](https://github.com/carlosfar/public/blob/master/Azure%20Security%20Center/ARG-Queries/ASCRecommendationsCustomDashboard.png)
