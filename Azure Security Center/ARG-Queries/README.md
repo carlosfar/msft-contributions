@@ -5,8 +5,7 @@ A particular usfeul use case is using ARG to query, visualize or export Azure Se
 This starter kit consists of a set of basic ARG queries that have been created to help anyone build on top of them taking into account different needs and requirements.
 
 1. Get ASC recommendations in usefull format
-'
-securityresource
+'securityresource
  | where type == "microsoft.security/assessments"
  // Get recommendations in useful format
  | project
@@ -29,8 +28,8 @@ securityresource
     ['Categories'] = properties.metadata.categories,
     ['UserImpact'] = properties.metadata.userImpact,
     ['Threats'] = properties.metadata.threats,
-    ['Link'] = properties.links.azurePortal 
-'
+    ['Link'] = properties.links.azurePortal'
+
 2. Get ASC nested recommendations in useful format
 
 securityresources
