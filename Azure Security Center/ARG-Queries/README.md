@@ -4,7 +4,7 @@ A useful use case is to use ARG to query, visualize or export Azure Security Cen
 
 This starter kit consists of a set of basic ARG queries that have been created to help you build on top of them based on your different needs and requirements.
 
-1. **Get ASC recommendations** in useful format
+1. **Get ASC recommendations** in a useful format
 ```
 securityresource
  | where type == "microsoft.security/assessments"
