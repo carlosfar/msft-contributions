@@ -1,4 +1,4 @@
-# Starter Kit - ARG Queries for defender for cloud recommendations
+## Starter Kit - ARG Queries for defender for cloud recommendations
 Azure Resource Graph (ARG) provides an efficient way to query at scale across a given set of subscriptions for any Azure Resource (more info: https://docs.microsoft.com/en-us/azure/governance/resource-graph/). 
 
 A useful use case is to use ARG to query, visualize or export Defender for cloud recommendations. This starter kit consists of a set of basic ARG queries.
@@ -145,4 +145,4 @@ securityresources
  | summarize count() by tostring(Threats)
  | order by count_
  ```
-By tweaking the previous query, we have been able to build different views summarizing ***threat vectors identified, type of impacted resources, list of recommendations, list of impacted resources, impacted subscriptions by threat vector, impacted resource group by threat vector.***
+By tweaking the previous query, you can build different views summarizing ***threat vectors identified, type of impacted resources, list of recommendations, list of impacted resources, impacted subscriptions by threat vector, impacted resource group by threat vector.***
