@@ -1,8 +1,7 @@
-# Starter Kit - ARG Queries for Azure Security Center Recommendations
-Azure Resource Graph (ARG) provides an efficient way to query at scale across a given set of subscriptions for any Azure Resource (for more information please visit https://docs.microsoft.com/en-us/azure/governance/resource-graph/). 
-A useful use case is to use ARG to query, visualize or export Azure Security Center (ASC) recommendations in order to get the information that matters most to you.
+# Starter Kit - ARG Queries for defender for cloud recommendations
+Azure Resource Graph (ARG) provides an efficient way to query at scale across a given set of subscriptions for any Azure Resource (more info: https://docs.microsoft.com/en-us/azure/governance/resource-graph/). 
 
-This starter kit consists of a set of basic ARG queries that have been created to help you build on top of them based on your different needs and requirements.
+A useful use case is to use ARG to query, visualize or export Defender for cloud recommendations. This starter kit consists of a set of basic ARG queries.
 
 1. **Get ASC recommendations** in a useful format
 ```
@@ -113,12 +112,6 @@ securityresources
 ```
 5. **Create your own dashboards** or visualization charts
 
-Apart from querying and exporting your results, ARG provides the ability to create charts and dashboards directly from the Azure Resource Graph Explorer console and even pin them directly into your Azure Portal.
-
-![Image of ASCRecom-CustomDashboard](https://github.com/carlosfar/public/blob/master/Azure%20Security%20Center/ARG-Queries/ASCRecommendations-ChartCreation.png)
-
-For this particular example, we will focus on all the recommendations that have been classified as **High Severity** and **Low Remediation Effort** by ASC in order to help prioritize work on what’s important and easy to remediate. As a starting point we have used the following ARG query:
-
 ```
 securityresources
  | where type == "microsoft.security/assessments"
@@ -153,5 +146,3 @@ securityresources
  | order by count_
  ```
 By tweaking the previous query, we have been able to build different views summarizing ***threat vectors identified, type of impacted resources, list of recommendations, list of impacted resources, impacted subscriptions by threat vector, impacted resource group by threat vector.***
- 
-![Image of ASCRecom-CustomDashboard](https://github.com/carlosfar/public/blob/master/Azure%20Security%20Center/ARG-Queries/ASCRecommendationsCustomDashboard.png)
